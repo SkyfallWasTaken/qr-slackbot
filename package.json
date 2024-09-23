@@ -1,0 +1,13 @@
+{
+  "name": "qr-slackbot",
+  "version": "1.0.0",
+  "author": "Mahad Kalam",
+  "private": true,
+  "license": "MIT",
+  "description": "",
+  "main": "src/index.ts",
+  "repository": "https://github.com/SkyfallWasTaken/qr-slackbot.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
