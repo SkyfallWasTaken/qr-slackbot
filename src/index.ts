@@ -7,12 +7,10 @@ const app = new App({
     signingSecret: process.env['SLACK_SIGNING_SECRET']
 });
 
+const linkRegex = /<([^|]+)\|([^>]+)>/g;
 function stripSlackMarkdownLinks(text: string): string {
-    // Regular expression to match Slack mrkdwn links
-    const regex = /<([^|]+)\|([^>]+)>/g;
-
     // Replace matches with the display text (second capture group)
-    return text.replace(regex, '$2');
+    return text.replace(linkRegex, '$2');
 }
 
 app.message(async ({message}) => {
