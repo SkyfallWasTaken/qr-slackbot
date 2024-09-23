@@ -51,7 +51,7 @@ app.message(async ({message}) => {
             ],
             channel_id: message.channel,
             initial_comment: `:wave-pikachu-2: Here's your QR code, <@${message.user}>!`,
-            thread_ts: message.thread_ts ?? message.ts,
+            thread_ts: message.ts,
         })
         if (!response.ok || !Array.isArray(response['files'])) {
             throw new Error(response.error);
