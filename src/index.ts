@@ -23,7 +23,16 @@ function stripSlackMarkdownLinks(text: string): string {
 const maxLength = 1024; // https://en.wikipedia.org/wiki/QR_code
 
 app.message(async ({message}) => {
-    if (!message.subtype && !message.thread_ts && message.text) {
+    if (!message.subtype && !message.thread_ts) {
+        if (!message.text) {
+            await app.client.chat.postMessage({
+                channel: message.channel,
+                text: `:browtffr: You can't make images/files into a QR code!`,
+                thread_ts: message.ts,
+            });
+            return;
+        }
+
         if (message.text.length > maxLength) {
             await app.client.chat.postMessage({
                 channel: message.channel,
