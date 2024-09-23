@@ -8,7 +8,7 @@ const app = new App({
 });
 
 app.message(async ({message}) => {
-    if (!message.subtype && message.text) {
+    if (!message.subtype && !message.thread_ts && message.text) {
         const response = await app.client.filesUploadV2({
             file_uploads: [
                 {
