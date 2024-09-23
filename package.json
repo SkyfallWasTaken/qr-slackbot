@@ -6,8 +6,18 @@
   "license": "MIT",
   "description": "",
   "main": "src/index.ts",
+  "type": "module",
   "repository": "https://github.com/SkyfallWasTaken/qr-slackbot.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.21.4",
+    "dotenv": "^16.4.5",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.6.0",
+    "@tsconfig/bun": "^1.0.7"
   }
 }
