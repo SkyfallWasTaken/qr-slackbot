@@ -20,8 +20,19 @@ function stripSlackMarkdownLinks(text: string): string {
     });
 }
 
+const maxLength = 2953; // https://en.wikipedia.org/wiki/QR_code
+
 app.message(async ({message}) => {
     if (!message.subtype && !message.thread_ts && message.text) {
+        if (message.text.length > maxLength) {
+            await app.client.chat.postMessage({
+                channel: message.channel,
+                text: `:browtffr: Your message is too long to be encoded into a QR code. Please try again with a shorter message.`,
+                thread_ts: message.ts,
+            });
+            return;
+        }
+
         const response = await app.client.filesUploadV2({
             file_uploads: [
                 {
