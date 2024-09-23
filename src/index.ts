@@ -8,9 +8,16 @@ const app = new App({
 });
 
 const linkRegex = /<([^|]+)\|([^>]+)>/g;
+const urlRegex = /^(https?:\/\/)/;
 function stripSlackMarkdownLinks(text: string): string {
-    // Replace matches with the display text (second capture group)
-    return text.replace(linkRegex, '$2');
+    // Replace matches with properly formatted URLs
+    return text.replace(linkRegex, (_, url) => {
+        // Check if URL starts with http/https, otherwise prepend https://
+        if (!urlRegex.test(url)) {
+            url = `https://${url}`;
+        }
+        return url;
+    });
 }
 
 app.message(async ({message}) => {
