@@ -7,12 +7,20 @@ const app = new App({
     signingSecret: process.env['SLACK_SIGNING_SECRET']
 });
 
+function stripSlackMarkdownLinks(text: string): string {
+    // Regular expression to match Slack mrkdwn links
+    const regex = /<([^|]+)\|([^>]+)>/g;
+
+    // Replace matches with the display text (second capture group)
+    return text.replace(regex, '$2');
+}
+
 app.message(async ({message}) => {
     if (!message.subtype && !message.thread_ts && message.text) {
         const response = await app.client.filesUploadV2({
             file_uploads: [
                 {
-                    file: qrImage(message.text, {type: 'png'}),
+                    file: qrImage(stripSlackMarkdownLinks(message.text), {type: 'png'}),
                     filename: "qr.png",
                 }
             ],
