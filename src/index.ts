@@ -20,7 +20,7 @@ function stripSlackMarkdownLinks(text: string): string {
     });
 }
 
-const maxLength = 2953; // https://en.wikipedia.org/wiki/QR_code
+const maxLength = 1024; // https://en.wikipedia.org/wiki/QR_code
 
 app.message(async ({message}) => {
     if (!message.subtype && !message.thread_ts && message.text) {
