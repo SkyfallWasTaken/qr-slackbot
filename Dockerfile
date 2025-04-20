@@ -2,7 +2,7 @@
 FROM oven/bun:latest
 
 # Install curl (for Coolify healthchecks)
-RUN sudo apt-get install curl -y
+RUN apt-get install curl -y
 
 # Set the working directory in the container
 WORKDIR /app
