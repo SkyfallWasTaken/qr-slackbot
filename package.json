@@ -9,6 +9,7 @@
   "type": "module",
   "repository": "https://github.com/SkyfallWasTaken/qr-slackbot.git",
   "scripts": {
+    "start": "bun .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
